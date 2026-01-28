@@ -1,46 +1,31 @@
-#include<iostream>
+#include <iostream>
+#include <cmath>
 using namespace std;
- int main()
- {
-    int n;
-    cout<<"Enter the number of items: ";
-    cin>>n;
-    double value[n], taken=0, weight[n], capacity, profit=0;
-    cout<<"Enter capacity of container: ";
-    cin>>capacity;
-    cout<<"Enter the values and weights of items:\n";
-    for(int i=0;i<n;i++)
-    {
-        cin>>value[i]>>weight[i];
-    }
-    for(int j=0;j<n;j++)
-    {
-        for(int i=0;i<n-1;i++)
-        {
-            if(value[i]/weight[i]<value[i+1]/weight[i+1])
-            {
-                double tempv=value[i];
-                double tempw=weight[i];
-                value[i]=value[i+1];
-                weight[i]=weight[i+1];
-                value[i+1]=tempv;
-                weight[i+1]=tempw;
-            }
-        }
-}
-for(int i=0;i<n;i++)
+
+int main() 
 {
-    if(capacity >= weight[i])
+    int a, b, k;
+
+    cout << "Enter value of a, b & k: ";
+    cin >> a>>b>>k;
+
+    double logval = log(a) / log(b);   
+
+    cout << "\nlog_b(a) = " << logval << endl;
+
+    if (logval > k) 
     {
-        taken = taken + weight[i];
-        profit = profit + value[i];
-        capacity = capacity - weight[i];
+        cout << "Case 1: \n";
+        cout << "T(n) = O(n^" << logval << ")\n";
     }
-    else
+    else if (logval == k) 
     {
-        profit = profit + (value[i]/weight[i]) * capacity;
-        break;
+        cout << "Case 2: \n";
+        cout << "T(n) = O(n^" << k << " log n)\n";
+    }
+    else 
+    {
+        cout << "Case 3:\n";
+        cout << "T(n) = O(n^" << k << ")\n";
     }
 }
-cout<<"Maximum profit is: "<<profit;
- }
